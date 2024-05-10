@@ -23,7 +23,7 @@ export const OrgSideBar = () => {
   return (
     <div className="hidden lg:flex flex-col space-y-6 w-[206px] pl-5 pt-5">
       <Link href="/">
-        <div className="flex items-center gap-x-2">
+        <div className="flex flex-col items-center gap-x-2">
           <Image
             src="/placeholder-logo.svg"
             alt="logo"
