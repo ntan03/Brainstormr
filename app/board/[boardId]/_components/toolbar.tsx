@@ -1,4 +1,4 @@
-import { CanvasMode, CanvasState, LayerType } from "@/app/types/canvas";
+import { CanvasMode, CanvasState, LayerType } from "@/types/canvas";
 
 import { ToolButton } from "./tool-button";
 import {

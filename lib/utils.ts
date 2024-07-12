@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-import { Camera } from "@/app/types/canvas";
+import { Camera } from "@/types/canvas";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
