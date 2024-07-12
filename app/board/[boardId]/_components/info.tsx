@@ -10,7 +10,7 @@ import { useRenameModal } from "@/store/use-rename-modal";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Hint } from "@/app/(dashboard)/_components/hint";
+import { Hint } from "@/components/hint";
 import { Actions } from "@/components/actions";
 import { Menu } from "lucide-react";
 
