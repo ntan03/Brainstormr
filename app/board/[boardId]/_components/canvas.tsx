@@ -79,14 +79,13 @@ export const Canvas = ({ boardId }: CanvasProps) => {
   const canUndo = useCanUndo();
   const canRedo = useCanRedo();
 
-  const undo = () => {
-    console.log("UNDO");
+  const undo = useCallback(() => {
     history.undo();
-  };
+  }, [history]);
 
-  const redo = () => {
+  const redo = useCallback(() => {
     history.redo();
-  };
+  }, [history]);
 
   const insertLayer = useMutation(
     (
