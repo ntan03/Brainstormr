@@ -32,7 +32,10 @@ export const SelectionBox = memo(
         <rect
           className="fill-transparent stroke-blue-500 stroke-1 pointer-events-none"
           style={{
-            transform: `translate(${bounds.x}px, ${bounds.y}px)`,
+            transform: `translate(
+              ${bounds.x}px, 
+              ${bounds.y}px
+            )`,
           }}
           x={0}
           y={0}

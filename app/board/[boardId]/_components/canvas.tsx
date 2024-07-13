@@ -34,6 +34,7 @@ import { Toolbar } from "./toolbar";
 import { CursorsPresence } from "./cursors-presence";
 import { LayerPreview } from "./layer-preview";
 import { SelectionBox } from "./selection-box";
+import { SelectionTools } from "./selection-tools";
 
 interface CanvasProps {
   boardId: string;
@@ -282,6 +283,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
         canUndo={canUndo}
         canRedo={canRedo}
       />
+      <SelectionTools camera={camera} setLastUsedColor={setLastUsedColor} />
       <svg
         className="h-[100vh] w-[100vw]"
         onWheel={onWheel}
@@ -290,7 +292,14 @@ export const Canvas = ({ boardId }: CanvasProps) => {
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
       >
-        <g style={{ transform: `translate(${camera.x}px, ${camera.y}px)` }}>
+        <g
+          style={{
+            transform: `translate(
+              ${camera.x}px, 
+              ${camera.y}px
+            )`,
+          }}
+        >
           {layerIds.map((layerId) => (
             <LayerPreview
               key={layerId}
