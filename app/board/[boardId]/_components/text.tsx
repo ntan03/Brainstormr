@@ -65,7 +65,7 @@ export const Text = ({
           fontSize: calculateFontSize(width, height),
           color: fill ? colorToCss(fill) : "#000",
         }}
-        html={value || "Text"}
+        html={value || ""}
         onChange={handleContentChange}
       />
     </foreignObject>

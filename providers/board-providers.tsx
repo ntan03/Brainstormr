@@ -26,6 +26,8 @@ export const BoardProvider = ({
         initialPresence={{
           cursor: null,
           selection: [],
+          pencilDraft: null,
+          penColor: null,
         }}
         initialStorage={{
           layers: new LiveMap<string, LiveObject<Layer>>(),

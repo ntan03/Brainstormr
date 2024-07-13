@@ -38,7 +38,7 @@ export const SelectionTools = memo(
     const bringToFront = useMutation(
       ({ storage }) => {
         const liveLayerIds = storage.get("layerIds");
-        const arr = liveLayerIds.toArray();
+        const arr = liveLayerIds.toImmutable();
 
         const indices: Array<number> = [];
         for (let i = 0; i < arr.length; i++) {
@@ -59,7 +59,7 @@ export const SelectionTools = memo(
     const sendToBack = useMutation(
       ({ storage }) => {
         const liveLayerIds = storage.get("layerIds");
-        const arr = liveLayerIds.toArray();
+        const arr = liveLayerIds.toImmutable();
 
         const indices: Array<number> = [];
         for (let i = 0; i < arr.length; i++) {
