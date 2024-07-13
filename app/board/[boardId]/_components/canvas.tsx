@@ -24,6 +24,7 @@ import {
 } from "@liveblocks/react/suspense";
 import {
   connectionIdToColor,
+  findIntersectingLayersWithSelectionNet,
   pointerEventToCanvasPoint,
   resizeBounds,
 } from "@/lib/utils";
@@ -41,6 +42,7 @@ interface CanvasProps {
 }
 
 const MAX_LAYERS = 100;
+const SELECTION_NET_THRESHOLD = 5;
 
 export const Canvas = ({ boardId }: CanvasProps) => {
   const layerIds = useStorage((root) => root.layerIds);
@@ -136,6 +138,39 @@ export const Canvas = ({ boardId }: CanvasProps) => {
     }
   }, []);
 
+  // Checks if click and drag creates a selection net
+  const updateSelectionNet = useMutation(
+    ({ storage, setMyPresence }, current: Point, origin: Point) => {
+      const layers = storage.get("layers").toImmutable();
+      setCanvasState({
+        mode: CanvasMode.SelectionNet,
+        current,
+        origin,
+      });
+
+      const ids = findIntersectingLayersWithSelectionNet(
+        layerIds,
+        layers,
+        origin,
+        current
+      );
+
+      setMyPresence({ selection: ids }, { addToHistory: true });
+    },
+    [layerIds, setCanvasState]
+  );
+
+  const startMultiSelection = useCallback(
+    (current: Point, origin: Point) => {
+      if (
+        Math.abs(current.x - origin.x) + Math.abs(current.y - origin.y) >
+        SELECTION_NET_THRESHOLD
+      )
+        setCanvasState({ mode: CanvasMode.SelectionNet, current, origin });
+    },
+    [setCanvasState]
+  );
+
   const resizeSelectedLayer = useMutation(
     ({ storage, self }, point: Point) => {
       if (canvasState.mode !== CanvasMode.Resizing) return;
@@ -183,7 +218,11 @@ export const Canvas = ({ boardId }: CanvasProps) => {
       // Calculate current cursor position
       const current = pointerEventToCanvasPoint(e, camera);
 
-      if (canvasState.mode === CanvasMode.Translating) {
+      if (canvasState.mode === CanvasMode.Pressing) {
+        startMultiSelection(current, canvasState.origin);
+      } else if (canvasState.mode === CanvasMode.SelectionNet) {
+        updateSelectionNet(current, canvasState.origin);
+      } else if (canvasState.mode === CanvasMode.Translating) {
         translateSelectedLayers(current);
       } else if (canvasState.mode === CanvasMode.Resizing) {
         resizeSelectedLayer(current);
@@ -311,6 +350,16 @@ export const Canvas = ({ boardId }: CanvasProps) => {
           <SelectionBox
             onResizeHandlerPointerDown={onResizeHandlerPointerDown}
           />
+          {canvasState.mode === CanvasMode.SelectionNet &&
+            canvasState.current != null && (
+              <rect
+                className="fill-blue-500/5 stroke-blue-500 stroke-1"
+                x={Math.min(canvasState.origin.x, canvasState.current.x)}
+                y={Math.min(canvasState.origin.y, canvasState.current.y)}
+                width={Math.abs(canvasState.origin.x - canvasState.current.x)}
+                height={Math.abs(canvasState.origin.y - canvasState.current.y)}
+              />
+            )}
           <CursorsPresence />
         </g>
       </svg>
