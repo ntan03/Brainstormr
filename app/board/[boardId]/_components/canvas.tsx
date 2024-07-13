@@ -437,7 +437,7 @@ export const Canvas = ({ boardId }: CanvasProps) => {
       // @ts-ignore
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [deleteLayers, history]);
+  }, [deleteLayers, undo, redo]);
 
   return (
     <main className="h-full w-full relative bg-neutral-100 touch-none">
