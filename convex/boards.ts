@@ -1,5 +1,3 @@
-// Query
-
 import { v } from "convex/values";
 import { getAllOrThrow } from "convex-helpers/server/relationships";
 
@@ -64,6 +62,7 @@ export const get = query({
         });
     });
 
-    return Promise.all(boardsWithFavoriteRelation);
+    const boardsWithFavoriteBoolean = Promise.all(boardsWithFavoriteRelation);
+    return boardsWithFavoriteBoolean;
   },
 });
