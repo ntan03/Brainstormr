@@ -425,9 +425,6 @@ export const Canvas = ({ boardId }: CanvasProps) => {
         case "y":
           if (e.ctrlKey) redo();
           break;
-        case "Backspace":
-          deleteLayers();
-          break;
         default:
           break;
       }
