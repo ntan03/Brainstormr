@@ -1,44 +1,43 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">  <img src="https://icons.iconarchive.com/icons/graphicloads/seo-services/256/creative-icon.png" width="40" alt="Logo" align="left" style="margin-right: 10px;"><h1 align="left">Brainstormr</h1>  </div>
+ 
+[![Vercel status](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://brainstormr.vercel.app/ "Vercel status")
+
+A collaborative, real-time whiteboard application that allows users to draw, write, and share ideas effortlessly with others, promoting better teamwork and creativity. The app includes user-friendly tools and real-time synchronization, providing a seamless and interactive collaborative experience.  
+
+Tech Stack:
+- **TypeScript**
+- **React**
+- **Next.js**
+- **Convex**
+- **Clerk**
+- **Liveblocks**
+
+## Preview
+![image](https://github.com/user-attachments/assets/07fffe48-56c7-4a6f-a85f-7f604953b525)
+
+![image](https://github.com/user-attachments/assets/76155632-ba0c-4e90-823a-d5a7ba30cf21)
+
+![image](https://github.com/user-attachments/assets/29ba20d6-ea29-4a1a-9862-4d7463f2aa49)
 
 ## Getting Started
 
-First, run the development server:
+1. Clone this repository to your local computer.
+2. Create `.env.local` file in **root** directory.
+3. Contents of `.env.local`:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```env
+
+CONVEX_DEPLOYMENT=dev:convex-app-name # team: <your-team-name>, project: <your-project-name>
+NEXT_PUBLIC_CONVEX_URL=https://convex-app-name.convex.cloud
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+CLERK_SECRET_KEY=sk_test_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+NEXT_PUBLIC_LIVEBLOCKS_PUBLIC_KEY=pk_dev_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+NEXT_PUBLIC_LIVEBLOCKS_SECRET_KEY=sk_dev_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Running Convex Server
-
-To run the convex server, run the following command in the project root directory:
-
-```bash
-npx convex dev
-```
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+4. Install all project dependencies using `npm install`.
+5. Build and start your server using `npx convex dev`.
+6. Now you can run the application locally using `npm run dev`.
